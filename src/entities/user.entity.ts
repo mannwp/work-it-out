@@ -29,13 +29,13 @@ export class User {
   weight?: number;
 
   @Column({ nullable: true })
-  profile_pic?: string;
+  profilePic?: string;
 
   @Column({ nullable: true })
   password: string;
 
   @Column({ default: false })
-  is_email_verified?: boolean;
+  isEmailVerified?: boolean;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.ATHLETE })
   role?: UserRole;

@@ -12,6 +12,12 @@ export class AuthService {
   async register(email: string, password: string) {
     return await this.userService.create(email, password);
   }
+  async verifyOtp(email: string, otp: string) {
+    return await this.userService.verifyOtp(email, otp);
+  }
+  async resendOtp(email: string, password: string) {
+    return await this.userService.resendOtp(email, password);
+  }
   async login(email: string, password: string) {
     const user = await this.userService.findByEmail(email);
     if (!user) {
@@ -21,9 +27,23 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException();
     }
+    if (!user.isEmailVerified) {
+      await this.userService.resendVerificationOtp(user);
+      throw new UnauthorizedException(
+        'Email not verified. Please verify your email.',
+      );
+    }
     const payload = { sub: user.id, role: user.role };
     return {
       token: this.jwtService.sign(payload),
     };
+  }
+
+  async forgotPassword(email: string) {
+    return await this.userService.forgotPassword(email);
+  }
+
+  async resetPassword(email: string, otp: string, newPassword: string) {
+    return await this.userService.resetPasswordWithOtp(email, otp, newPassword);
   }
 }

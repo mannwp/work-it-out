@@ -8,6 +8,8 @@ import { WorkoutModule } from './workout/workout.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
+import { OtpModule } from './otp/otp.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { typeOrmConfig } from './config/typeorm.config';
     AuthModule,
     ExerciseModule,
     WorkoutModule,
+    OtpModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
