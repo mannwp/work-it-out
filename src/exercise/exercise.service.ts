@@ -1,4 +1,5 @@
 import {
+  ForbiddenException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -17,7 +18,7 @@ export class ExerciseService {
   ) {}
   async create(userRole: UserRole, createExerciseDto: CreateExerciseDto) {
     if (userRole === UserRole.ATHLETE) {
-      throw new UnauthorizedException('Athlete cant update exercise');
+      throw new ForbiddenException('Athlete cant create exercise');
     }
     const exercise = this.exerciseRepository.create(createExerciseDto);
     return await this.exerciseRepository.save(exercise);
@@ -27,8 +28,12 @@ export class ExerciseService {
     return this.exerciseRepository.find();
   }
 
-  findOne(id: string) {
-    return this.exerciseRepository.findOneBy({ id });
+  async findOne(id: string) {
+    const exercise = await this.exerciseRepository.findOneBy({ id });
+    if (!exercise) {
+      throw new NotFoundException('Exercise not found');
+    }
+    return exercise;
   }
 
   async update(
@@ -37,7 +42,7 @@ export class ExerciseService {
     updateExerciseDto: UpdateExerciseDto,
   ) {
     if (userRole === UserRole.ATHLETE) {
-      throw new UnauthorizedException(
+      throw new ForbiddenException(
         'Athlete cant update exercise. Add a new request to admin',
       );
     }
@@ -53,7 +58,10 @@ export class ExerciseService {
     if (userRole === UserRole.ATHLETE) {
       throw new UnauthorizedException('Athlete cant delete exercise.');
     }
-    await this.exerciseRepository.softDelete(id);
+    const result = await this.exerciseRepository.softDelete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException('No exercise found');
+    }
     return 'Exercise deleted successfully';
   }
 }

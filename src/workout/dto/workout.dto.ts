@@ -6,6 +6,7 @@ import {
   IsInt,
   Min,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 export class WorkoutExerciseDto {
   @ApiProperty({
@@ -68,6 +69,7 @@ export class CreateWorkoutDto {
   @ApiProperty({
     type: [WorkoutExerciseDto],
   })
+  @Type(() => WorkoutExerciseDto)
   @IsArray()
   @ValidateNested({ each: true })
   exercises: WorkoutExerciseDto[];

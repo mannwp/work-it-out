@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { MailService } from 'src/mail/mail.service';
 import { OtpService } from 'src/otp/otp.service';
+import { EditProfileDto } from './dto/user.dto';
 @Injectable()
 export class UsersService {
   constructor(
@@ -50,7 +51,7 @@ export class UsersService {
     if (!user) throw new BadRequestException('User not found');
     if (!user.password) {
       throw new BadRequestException(
-        'Registered with google no existing password',
+        'This account was registered with Google and has no password',
       );
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -94,7 +95,7 @@ export class UsersService {
     await this.userRepository.update(user.id, {
       password: hashedNewPassword,
     });
-    return 'Otp verified successfully';
+    return 'Password reset successfully';
   }
 
   async forgotPassword(email: string) {
@@ -162,8 +163,12 @@ export class UsersService {
     });
     return this.userRepository.save(newUser);
   }
-  async edit(id: string, data: Partial<User>) {
+  async edit(id: string, data: EditProfileDto) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
     await this.userRepository.update(id, data);
-    return data;
+    return this.userRepository.findOne({ where: { id } });
   }
 }

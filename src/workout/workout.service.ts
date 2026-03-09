@@ -1,7 +1,7 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateWorkoutDto, UpdateWorkoutDto } from './dto/workout.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -43,7 +43,8 @@ export class WorkoutService {
       });
       const savedWorkout = await queryRunner.manager.save(workout);
 
-      const workoutExercises = createWorkoutDto.exercises.map((ex) =>
+      const exercises = createWorkoutDto.exercises ?? [];
+      const workoutExercises = exercises.map((ex) =>
         queryRunner.manager.create(WorkoutExercise, {
           workout: { id: savedWorkout.id },
           exercise: { id: ex.exerciseId },
@@ -94,8 +95,9 @@ export class WorkoutService {
       title: workout.title,
       description: workout.description,
       isOfficial: workout.isOfficial,
-      createdByUser: workout.createdBy.name || workout.createdBy.email,
-      createdByProfile: workout.createdBy.profilePic,
+      createdByUser:
+        workout.createdBy?.name || workout.createdBy?.email || 'Unknown',
+      createdByProfile: workout.createdBy?.profilePic ?? null,
       createdById: workout.createdById,
       exercises: exercises,
     };
@@ -113,7 +115,7 @@ export class WorkoutService {
       throw new BadRequestException('Workout not found');
     }
     if (workout.createdById !== userId) {
-      throw new UnauthorizedException('Workout can only be updated by creator');
+      throw new ForbiddenException('Workout can only be updated by creator');
     }
 
     const queryRunner = this.dataSource.createQueryRunner();
@@ -167,7 +169,7 @@ export class WorkoutService {
       throw new BadRequestException(`No workout found with id: ${id}`);
     }
     if (userId !== workout.createdById) {
-      throw new UnauthorizedException(`Workout can only be deleted by creator`);
+      throw new ForbiddenException(`Workout can only be deleted by creator`);
     }
     await this.workoutRepository.softDelete(workout.id);
     return 'Workout deleted successfully';

@@ -10,9 +10,18 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     private usersService: UsersService,
     configService: ConfigService,
   ) {
+    const clientID = configService.get<string>('GOOGLE_CLIENT_ID');
+    const clientSecret = configService.get<string>('GOOGLE_CLIENT_SECRET');
+    if (!clientID || !clientSecret) {
+      throw new Error(
+        `GoogleStrategy initialization failed: Missing OAuth credentials.\n` +
+          `clientID: '${clientID}'\nclientSecret: '${clientSecret}'\n` +
+          `Ensure configService.get('GOOGLE_CLIENT_ID') and configService.get('GOOGLE_CLIENT_SECRET') return valid values.`,
+      );
+    }
     super({
-      clientID: configService.get<string>('GOOGLE_CLIENT_ID', ''),
-      clientSecret: configService.get<string>('GOOGLE_CLIENT_SECRET', ''),
+      clientID,
+      clientSecret,
       callbackURL: configService.get<string>(
         'GOOGLE_CALLBACK_URL',
         'http://localhost:3000/auth/google/callback',
@@ -28,9 +37,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     done: (error: Error | null, user?: Express.User | false) => void,
   ) {
     const { id, emails, displayName, photos } = profile;
+    if (!emails || emails.length === 0) {
+      return done(new Error('No email found in Google profile'));
+    }
     const user = await this.usersService.findOrCreateGoogleUser({
       googleId: id,
-      email: emails![0].value,
+      email: emails[0].value,
       name: displayName,
       profileUrl: photos ? photos[0].value : undefined,
     });

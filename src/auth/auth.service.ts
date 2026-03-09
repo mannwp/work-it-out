@@ -30,7 +30,7 @@ export class AuthService {
 
     if (!user.password) {
       throw new BadRequestException(
-        'Registered with google no existing password',
+        'Password login is not available for this account',
       );
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -58,6 +58,9 @@ export class AuthService {
   }
 
   googleLogin(user: { id: string; role?: string }) {
+    if (!user?.id) {
+      throw new UnauthorizedException('Invalid user data');
+    }
     const payload = { sub: user.id, role: user.role };
     return {
       token: this.jwtService.sign(payload),
