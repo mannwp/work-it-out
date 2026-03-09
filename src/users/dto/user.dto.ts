@@ -1,5 +1,13 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
+import {
+  IsDate,
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { User } from 'src/entities/user.entity';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -75,4 +83,31 @@ export class ResetPasswordWithOtpDto {
   @IsString()
   @IsNotEmpty()
   newPassword: string;
+}
+
+export class EditProfileDto extends PartialType(User) {
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  name?: string;
+
+  @ApiProperty({ required: false })
+  @IsDate()
+  @IsOptional()
+  dob?: Date;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  height?: number;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  weight?: number;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  profilePic?: string;
 }

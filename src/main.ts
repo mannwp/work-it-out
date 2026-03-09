@@ -7,6 +7,8 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('WorkItOut docs')
     .setVersion('1.0')
+    .addBearerAuth()
+    .setExternalDoc('Collection JSON', '/docs-json')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);

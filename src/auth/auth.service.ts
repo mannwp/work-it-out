@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -23,6 +27,12 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException();
     }
+
+    if (!user.password) {
+      throw new BadRequestException(
+        'Registered with google no existing password',
+      );
+    }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException();
@@ -45,5 +55,12 @@ export class AuthService {
 
   async resetPassword(email: string, otp: string, newPassword: string) {
     return await this.userService.resetPasswordWithOtp(email, otp, newPassword);
+  }
+
+  googleLogin(user: { id: string; role?: string }) {
+    const payload = { sub: user.id, role: user.role };
+    return {
+      token: this.jwtService.sign(payload),
+    };
   }
 }

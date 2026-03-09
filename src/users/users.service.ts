@@ -48,7 +48,13 @@ export class UsersService {
   async resendOtp(email: string, password: string) {
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) throw new BadRequestException('User not found');
+    if (!user.password) {
+      throw new BadRequestException(
+        'Registered with google no existing password',
+      );
+    }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
     if (!isPasswordCorrect) throw new BadRequestException('Invalid password');
     await this.sendVerificationEmail(user);
 
@@ -75,6 +81,11 @@ export class UsersService {
     if (!user) {
       throw new UnauthorizedException('Email does not exist');
     }
+    if (!user.password) {
+      throw new BadRequestException(
+        'Registered with google no existing password',
+      );
+    }
     const isPasswordCorrect = await bcrypt.compare(oldPassword, user.password);
     if (!isPasswordCorrect) {
       throw new UnauthorizedException('Incorrect old password');
@@ -83,7 +94,7 @@ export class UsersService {
     await this.userRepository.update(user.id, {
       password: hashedNewPassword,
     });
-    return true;
+    return 'Otp verified successfully';
   }
 
   async forgotPassword(email: string) {
@@ -114,5 +125,45 @@ export class UsersService {
 
   async resendVerificationOtp(user: User) {
     await this.sendVerificationEmail(user);
+  }
+
+  async findOrCreateGoogleUser(profile: {
+    googleId: string;
+    email: string;
+    name: string;
+    profileUrl?: string;
+  }) {
+    // Try finding by googleId first
+    let user = await this.userRepository.findOne({
+      where: { googleId: profile.googleId },
+    });
+    if (user) return user;
+
+    // Try finding by email (account already exists with email/password)
+    user = await this.userRepository.findOne({
+      where: { email: profile.email },
+    });
+    if (user) {
+      // Link the Google ID to the existing account
+      await this.userRepository.update(user.id, {
+        googleId: profile.googleId,
+        isEmailVerified: true,
+      });
+      return { ...user, googleId: profile.googleId, isEmailVerified: true };
+    }
+
+    // Create a brand-new Google user (no password, already verified)
+    const newUser = this.userRepository.create({
+      email: profile.email,
+      name: profile.name,
+      profilePic: profile.profileUrl,
+      googleId: profile.googleId,
+      isEmailVerified: true,
+    });
+    return this.userRepository.save(newUser);
+  }
+  async edit(id: string, data: Partial<User>) {
+    await this.userRepository.update(id, data);
+    return data;
   }
 }

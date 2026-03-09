@@ -5,9 +5,14 @@ import { User } from 'src/entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OtpModule } from 'src/otp/otp.module';
 import { MailModule } from 'src/mail/mail.module';
+import { UserWorkout } from 'src/entities/user-workout.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), OtpModule, MailModule],
+  imports: [
+    TypeOrmModule.forFeature([User, UserWorkout]),
+    OtpModule,
+    MailModule,
+  ],
   controllers: [UsersController],
   providers: [UsersService],
   exports: [UsersService],

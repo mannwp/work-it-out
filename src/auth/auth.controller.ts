@@ -1,4 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {
   CreateUserDto,
@@ -6,6 +13,7 @@ import {
   ResetPasswordWithOtpDto,
   VerifyUserOtp,
 } from 'src/users/dto/user.dto';
+import { GoogleAuthGuard } from './google-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -37,5 +45,17 @@ export class AuthController {
       body.otp,
       body.newPassword,
     );
+  }
+
+  @UseGuards(GoogleAuthGuard)
+  @Get('google')
+  googleAuth() {
+    // Redirects to Google — handled by the guard
+  }
+
+  @UseGuards(GoogleAuthGuard)
+  @Get('google/callback')
+  googleCallback(@Request() req: { user: { id: string; role?: string } }) {
+    return this.authService.googleLogin(req.user);
   }
 }

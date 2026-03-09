@@ -2,8 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+import { UserWorkout } from './user-workout.entity';
+import { Workout } from './workout.entity';
 export enum UserRole {
   ADMIN = 'admin',
   ATHLETE = 'athlete',
@@ -19,10 +23,10 @@ export class User {
   @Column({ nullable: true })
   name?: string;
 
-  @CreateDateColumn({ type: 'timestamptz', nullable: true })
+  @Column({ type: 'date', nullable: true })
   dob?: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   height?: number;
 
   @Column({ nullable: true })
@@ -32,11 +36,26 @@ export class User {
   profilePic?: string;
 
   @Column({ nullable: true })
-  password: string;
+  password?: string;
 
   @Column({ default: false })
   isEmailVerified?: boolean;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.ATHLETE })
   role?: UserRole;
+
+  @Column({ nullable: true, unique: true })
+  googleId?: string;
+
+  @OneToMany(() => UserWorkout, (uw) => uw.user)
+  userWorkouts: UserWorkout[];
+
+  @OneToMany(() => Workout, (workout) => workout.createdBy)
+  workouts: Workout[];
+
+  @CreateDateColumn({ type: 'timestamptz' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: 'timestamptz' })
+  updatedAt: Date;
 }
