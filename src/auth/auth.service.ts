@@ -27,6 +27,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException();
     }
+    console.log(user);
 
     if (!user.password) {
       throw new BadRequestException(

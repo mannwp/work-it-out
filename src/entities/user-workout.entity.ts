@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Workout } from './workout.entity';
-import { DayOfWeek } from 'src/common/enums/day-of-week.enum';
+import { DayOfWeek } from '../common/enums/day-of-week.enum';
 
 @Entity()
 export class UserWorkout {

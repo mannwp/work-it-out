@@ -7,43 +7,19 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-export class SafeUserDto {
-  @ApiProperty({ required: false })
-  @IsString()
-  @IsOptional()
-  name?: string;
-
-  @ApiProperty({ required: false })
-  @IsDate()
-  @IsOptional()
-  dob?: Date;
-
-  @ApiProperty({ required: false })
-  @IsNumber()
-  @IsOptional()
-  height?: number;
-
-  @ApiProperty({ required: false })
-  @IsNumber()
-  @IsOptional()
-  weight?: number;
-
-  @ApiProperty({ required: false })
-  @IsString()
-  @IsOptional()
-  profilePic?: string;
-}
+import { DayOfWeek } from '../../common/enums/day-of-week.enum';
+import { User } from '../../entities/user.entity';
 
 export class CreateUserDto {
-  @ApiProperty({ required: false })
-  @IsDate()
-  @IsOptional()
-  dob?: Date;
+  @ApiProperty({
+    default: 'mannpatel3118@gmail.com',
+  })
+  @IsEmail()
   @IsNotEmpty()
   email: string;
 
   @ApiProperty({
-    default: '1234',
+    default: 'Test@1234',
   })
   @IsString()
   @IsNotEmpty()
@@ -110,4 +86,36 @@ export class ResetPasswordWithOtpDto {
   newPassword: string;
 }
 
-export class EditProfileDto extends PartialType(SafeUserDto) {}
+export class EditProfileDto extends PartialType(User) {
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  name?: string;
+
+  @ApiProperty({ required: false })
+  @IsDate()
+  @IsOptional()
+  dob?: Date;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  height?: number;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  weight?: number;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  profilePic?: string;
+}
+export class AddWorkoutDto {
+  @ApiProperty()
+  workoutId: string;
+  @ApiProperty()
+  dayOfWeek: DayOfWeek;
+}
+export class RemoveWorkoutDto extends AddWorkoutDto {}

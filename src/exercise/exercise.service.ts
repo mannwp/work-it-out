@@ -24,8 +24,42 @@ export class ExerciseService {
     return await this.exerciseRepository.save(exercise);
   }
 
-  findAll() {
-    return this.exerciseRepository.find();
+  async findAll(
+    page: number,
+    limit: number,
+    q?: string,
+    muscleGroup?: string,
+    difficulty?: string,
+    equipment?: string,
+  ) {
+    const query = this.exerciseRepository.createQueryBuilder('exercise');
+    if (q) {
+      query.where(
+        '(exercise.title ILIKE :q OR exercise.description ILIKE :q)',
+        {
+          q: `%${q}%`,
+        },
+      );
+    }
+    if (muscleGroup) {
+      query.andWhere('exercise.muscleGroup ILIKE :muscleGroup', {
+        muscleGroup: `%${muscleGroup}%`,
+      });
+    }
+    if (difficulty) {
+      query.andWhere('exercise.difficulty ILIKE :difficulty', {
+        difficulty: `%${difficulty}%`,
+      });
+    }
+    if (equipment) {
+      query.andWhere('exercise.equipment ILIKE :equipment', {
+        equipment: `%${equipment}%`,
+      });
+    }
+    query.take(limit).skip((page - 1) * limit);
+
+    const [exercise, total] = await query.getManyAndCount();
+    return { exercise, pagination: { page, limit, total } };
   }
 
   async findOne(id: string) {

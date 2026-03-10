@@ -1,0 +1,906 @@
+[
+  {
+    "title": "Bench Press",
+    "description": "Bench Press exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "barbell and flat bench",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif"
+  },
+  {
+    "title": "Arm Scissors",
+    "description": "Arm Scissors exercise targeting neck muscles.",
+    "muscleGroup": "shoulders",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Arm-Scissors.gif"
+  },
+  {
+    "title": "Incline Chest Fly Machine",
+    "description": "Incline Chest Fly Machine exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "incline chest fly machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/06/Incline-Chest-Fly-Machine.gif"
+  },
+  {
+    "title": "Pec Deck Fly",
+    "description": "Pec Deck Fly exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "pec deck machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pec-Deck-Fly.gif"
+  },
+  {
+    "title": "Dumbbell Pullover",
+    "description": "Dumbbell Pullover exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "dumbbell and flat bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif"
+  },
+  {
+    "title": "Low Cable Crossover",
+    "description": "Low Cable Crossover exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Low-Cable-Crossover.gif"
+  },
+  {
+    "title": "High Cable Crossover",
+    "description": "High Cable Crossover exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/High-Cable-Crossover.gif"
+  },
+  {
+    "title": "Cable Upper Chest Crossovers",
+    "description": "Cable Upper Chest Crossovers exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/10/Cable-Upper-Chest-Crossovers.gif"
+  },
+  {
+    "title": "Incline Barbell Bench Press",
+    "description": "Incline Barbell Bench Press exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "barbell and incline bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Barbell-Bench-Press.gif"
+  },
+  {
+    "title": "Dumbbell Fly",
+    "description": "Dumbbell Fly exercise targeting neck muscles.",
+    "muscleGroup": "chest",
+    "equipment": "dumbbells and flat bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif"
+  },
+  {
+    "title": "Unilateral Lat Stretch on the Wall",
+    "description": "Unilateral Lat Stretch on the Wall exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "wall (bodyweight stretch)",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2026/01/Unilateral-Lat-Stretch-on-the-Wall.gif"
+  },
+  {
+    "title": "Weighted Muscle-Up",
+    "description": "Weighted Muscle-Up exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "pull-up bar and dip belt (weighted)",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Weighted-Muscle-Up.gif"
+  },
+  {
+    "title": "Band Assisted Muscle-Up",
+    "description": "Band Assisted Muscle-Up exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "pull-up bar and resistance band",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/How-to-do-Band-Assisted-Muscle-Up.gif"
+  },
+  {
+    "title": "Top Half Pull-up",
+    "description": "Top Half Pull-up exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "pull-up bar",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Top-Half-Pull-up.gif"
+  },
+  {
+    "title": "Eccentric Pull-Up",
+    "description": "Eccentric Pull-Up exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "pull-up bar",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/05/eccentric-pull-up-female.gif"
+  },
+  {
+    "title": "Lever Front Pulldown",
+    "description": "Lever Front Pulldown exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "lat pulldown machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Front-Pulldown.gif"
+  },
+  {
+    "title": "Pull-Up",
+    "description": "Pull-Up exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "pull-up bar",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pull-up.gif"
+  },
+  {
+    "title": "Cable Rear Pulldown",
+    "description": "Cable Rear Pulldown exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Cable-Rear-Pulldown.gif"
+  },
+  {
+    "title": "Lat Pulldown",
+    "description": "Lat Pulldown exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "lat pulldown machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif"
+  },
+  {
+    "title": "Seated Cable Row",
+    "description": "Seated Cable Row exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "cable row machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif"
+  },
+  {
+    "title": "Cable Single Arm Hammer Curl",
+    "description": "Cable Single Arm Hammer Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "cable machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/cable-single-arm-hammer-curl.gif"
+  },
+  {
+    "title": "Seated Zottman Curl",
+    "description": "Seated Zottman Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbells and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Seated-Zottman-Curl.gif"
+  },
+  {
+    "title": "Standing Barbell Concentration Curl",
+    "description": "Standing Barbell Concentration Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Standing-Barbell-Concentration-Curl.gif"
+  },
+  {
+    "title": "Waiter Curl",
+    "description": "Waiter Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/waiter-curl.gif"
+  },
+  {
+    "title": "Double Arm Dumbbell Curl",
+    "description": "Double Arm Dumbbell Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbells",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/04/Double-Arm-Dumbbell-Curl.gif"
+  },
+  {
+    "title": "Dumbbell Curl",
+    "description": "Dumbbell Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbells",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif"
+  },
+  {
+    "title": "Barbell Curl",
+    "description": "Barbell Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "barbell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Curl.gif"
+  },
+  {
+    "title": "Concentration Curl",
+    "description": "Concentration Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbell and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Concentration-Curl.gif"
+  },
+  {
+    "title": "Dumbbell Preacher Curl",
+    "description": "Dumbbell Preacher Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "dumbbell and preacher bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Preacher-Curl.gif"
+  },
+  {
+    "title": "EZ Bar Preacher Curl",
+    "description": "EZ Bar Preacher Curl exercise targeting neck muscles.",
+    "muscleGroup": "biceps",
+    "equipment": "EZ bar and preacher bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Z-Bar-Preacher-Curl.gif"
+  },
+  {
+    "title": "One-Arm Single-Leg Bench Dips",
+    "description": "One-Arm Single-Leg Bench Dips exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/04/One-arm-Single-leg-Bench-Dips.gif"
+  },
+  {
+    "title": "Barbell JM Press",
+    "description": "Barbell JM Press exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "barbell and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2024/12/Barbell-JM-Press.gif"
+  },
+  {
+    "title": "One Arm Triceps Pushdown",
+    "description": "One Arm Triceps Pushdown exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "cable machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/11/One-arm-triceps-pushdown.gif"
+  },
+  {
+    "title": "Dumbbell Kickback",
+    "description": "Dumbbell Kickback exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif"
+  },
+  {
+    "title": "One-Arm Reverse Pushdown",
+    "description": "One-Arm Reverse Pushdown exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/One-Arm-Reverse-Push-Down.gif"
+  },
+  {
+    "title": "Push-down",
+    "description": "Push-down exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "cable machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif"
+  },
+  {
+    "title": "Bench Dips",
+    "description": "Bench Dips exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Dips.gif"
+  },
+  {
+    "title": "Triceps Dips",
+    "description": "Triceps Dips exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "parallel bars or dip station",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Triceps-Dips.gif"
+  },
+  {
+    "title": "One-Arm Lying Triceps Extension",
+    "description": "One-Arm Lying Triceps Extension exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "dumbbell and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/One-Arm-Lying-Triceps-Extension.gif"
+  },
+  {
+    "title": "Cable Rope Overhead Triceps Extension",
+    "description": "Cable Rope Overhead Triceps Extension exercise targeting neck muscles.",
+    "muscleGroup": "triceps",
+    "equipment": "cable machine and rope attachment",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif"
+  },
+  {
+    "title": "Forward Bend",
+    "description": "Forward Bend exercise targeting neck muscles.",
+    "muscleGroup": "hamstrings",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2026/01/forward-bend.gif"
+  },
+  {
+    "title": "Pendulum Lunge",
+    "description": "Pendulum Lunge exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/09/pendulum-lunge.gif"
+  },
+  {
+    "title": "Dumbbell Jefferson Curl",
+    "description": "Dumbbell Jefferson Curl exercise targeting neck muscles.",
+    "muscleGroup": "hamstrings",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/08/Dumbbell-jefferson-curl.gif"
+  },
+  {
+    "title": "Heel-Elevated Goblet Squat",
+    "description": "Heel-Elevated Goblet Squat exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "dumbbell or kettlebell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Heel-Elevated-Goblet-Squat.gif"
+  },
+  {
+    "title": "Leg Swings Front to Back",
+    "description": "Leg Swings Front to Back exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Leg-Swings-Front-to-Back.gif"
+  },
+  {
+    "title": "Bodyweight Plie Squat",
+    "description": "Bodyweight Plie Squat exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/04/Bodyweight-Plie-Squat.gif"
+  },
+  {
+    "title": "Smith Machine Squat",
+    "description": "Smith Machine Squat exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "Smith machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2024/10/smith-machine-squat.gif"
+  },
+  {
+    "title": "Dumbbell Cossack Squat",
+    "description": "Dumbbell Cossack Squat exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2024/09/dumbbell-cossack-squat.gif"
+  },
+  {
+    "title": "Dumbbell Goblet Squat",
+    "description": "Dumbbell Goblet Squat exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif"
+  },
+  {
+    "title": "Curtsy Lunge",
+    "description": "Curtsy Lunge exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight (or dumbbells optional)",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/curtsy-lunge.gif"
+  },
+  {
+    "title": "Single Leg Dumbbell Side Bridge",
+    "description": "Single Leg Dumbbell Side Bridge exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2026/01/Single-Leg-Dumbbell-Side-Bridge.gif"
+  },
+  {
+    "title": "Body Saw Plank",
+    "description": "Body Saw Plank exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight (on floor or sliders)",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/body-saw-plank.gif"
+  },
+  {
+    "title": "Standing Stomach Vacuum",
+    "description": "Standing Stomach Vacuum exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/05/Standing-Stomach-Vacuum.gif"
+  },
+  {
+    "title": "Bear Crawl",
+    "description": "Bear Crawl exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bear-Crawl.gif"
+  },
+  {
+    "title": "High Plank",
+    "description": "High Plank exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/07/High-Plank.gif"
+  },
+  {
+    "title": "Full Planche",
+    "description": "Full Planche exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight (parallettes optional)",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/04/Full-Planche.gif"
+  },
+  {
+    "title": "Side Plank Hip Adduction",
+    "description": "Side Plank Hip Adduction exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bodyweight",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/03/Side-Plank-Hip-Adduction-Copenhagen-adduction.gif"
+  },
+  {
+    "title": "Medicine Ball Rotational Throw",
+    "description": "Medicine Ball Rotational Throw exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "medicine ball",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/12/Medicine-Ball-Rotational-Throw.gif"
+  },
+  {
+    "title": "Dragon Flag",
+    "description": "Dragon Flag exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "bench or floor",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/07/Leg-Raise-Dragon-Flag.gif"
+  },
+  {
+    "title": "Burpee Long Jump",
+    "description": "Burpee Long Jump exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/10/Burpee-Long-Jump.gif"
+  },
+  {
+    "title": "5 Dot Drills",
+    "description": "5 Dot Drills exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight (agility markers optional)",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/12/5-Dot-drills-agility-exercise.gif"
+  },
+  {
+    "title": "Navy Seal Burpee",
+    "description": "Navy Seal Burpee exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Navy-Seal-Burpee.gif"
+  },
+  {
+    "title": "Depth Jump to Hurdle Hop",
+    "description": "Depth Jump to Hurdle Hop exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "box or platform and hurdles",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/Depth-Jump-to-Hurdle-Hop.gif"
+  },
+  {
+    "title": "Power Lunge",
+    "description": "Power Lunge exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/power-lunge.gif"
+  },
+  {
+    "title": "Shadow Boxing",
+    "description": "Shadow Boxing exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/shadow-boxing-workout.gif"
+  },
+  {
+    "title": "Riding Outdoor Bicycle",
+    "description": "Riding Outdoor Bicycle exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "bicycle",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Riding-Outdoor-Bicycle.gif"
+  },
+  {
+    "title": "Walking",
+    "description": "Walking exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "none (bodyweight)",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Walking.gif"
+  },
+  {
+    "title": "Briskly Walking",
+    "description": "Briskly Walking exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "none (bodyweight)",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Briskly-Walking.gif"
+  },
+  {
+    "title": "Seated Barbell Finger Curl",
+    "description": "Seated Barbell Finger Curl exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "barbell and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/seated-barbell-finger-curl.gif"
+  },
+  {
+    "title": "Wrist Rotations",
+    "description": "Wrist Rotations exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "bodyweight or light dumbbell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/wrist-rotations.gif"
+  },
+  {
+    "title": "Wrist Roller",
+    "description": "Wrist Roller exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "wrist roller",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/wrist-roller.gif"
+  },
+  {
+    "title": "Dumbbell Seated Neutral Wrist Curl",
+    "description": "Dumbbell Seated Neutral Wrist Curl exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "dumbbells and bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Seated-Neutral-Wrist-Curl.gif"
+  },
+  {
+    "title": "Dumbbell Wrist Curl",
+    "description": "Dumbbell Wrist Curl exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "dumbbells",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Wrist-Curl.gif"
+  },
+  {
+    "title": "Barbell Reverse Wrist Curl",
+    "description": "Barbell Reverse Wrist Curl exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Barbell-Reverse-Wrist-Curl.gif"
+  },
+  {
+    "title": "Dynamic Wrist Stretches",
+    "description": "Dynamic Wrist Stretches exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Wrist-Circles-Stretch.gif"
+  },
+  {
+    "title": "Barbell Reverse Curl",
+    "description": "Barbell Reverse Curl exercise targeting neck muscles.",
+    "muscleGroup": "forearms",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Reverse-Curl.gif"
+  },
+  {
+    "title": "Overhead Shrug",
+    "description": "Overhead Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "barbell or dumbbells",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/07/overhead-shrug.gif"
+  },
+  {
+    "title": "Gittleson Shrug",
+    "description": "Gittleson Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "dumbbells and bench",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/01/Dumbbell-Seated-Gittleson-Shrug.gif"
+  },
+  {
+    "title": "45 Degree Incline Dumbbell Row",
+    "description": "45 Degree Incline Dumbbell Row exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "dumbbells and incline bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/45-Degree-Incline-Row.gif"
+  },
+  {
+    "title": "Dumbbell Shrug",
+    "description": "Dumbbell Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "dumbbells",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Shrug.gif"
+  },
+  {
+    "title": "Cable Shrug",
+    "description": "Cable Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "cable machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Shrug.gif"
+  },
+  {
+    "title": "Barbell Shrug",
+    "description": "Barbell Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "barbell",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Shrug.gif"
+  },
+  {
+    "title": "Behind The Back Barbell Shrug",
+    "description": "Behind The Back Barbell Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/03/Behind-The-Back-Barbell-Shrug-Reverse-Barbell-Shrug.gif"
+  },
+  {
+    "title": "Dumbbell Incline Shrug",
+    "description": "Dumbbell Incline Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "dumbbells and incline bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Incline-Shrug.gif"
+  },
+  {
+    "title": "Prone Incline Shrug",
+    "description": "Prone Incline Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "dumbbells and incline bench",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Decline-Shrug.gif"
+  },
+  {
+    "title": "Lever Shrug",
+    "description": "Lever Shrug exercise targeting neck muscles.",
+    "muscleGroup": "traps",
+    "equipment": "lever shrug machine or smith machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shrug.gif"
+  },
+  {
+    "title": "Bodyweight Standing Calf Raise",
+    "description": "Bodyweight Standing Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Calf-Raise.gif"
+  },
+  {
+    "title": "Standing Calf Raise With Dumbbell",
+    "description": "Standing Calf Raise With Dumbbell exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "dumbbells",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Calf-Raise.gif"
+  },
+  {
+    "title": "Calf Raise with Resistance Band",
+    "description": "Calf Raise with Resistance Band exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "resistance band",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/05/Calf-Raise-with-Resistance-Band.gif"
+  },
+  {
+    "title": "Barbell Seated Calf Raise",
+    "description": "Barbell Seated Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "barbell and bench or seated calf machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Barbell-Seated-Calf-Raise.gif"
+  },
+  {
+    "title": "Leg Press Calf Raise",
+    "description": "Leg Press Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "leg press machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Leg-Press-Calf-Raise.gif"
+  },
+  {
+    "title": "Hack Squat Calf Raise",
+    "description": "Hack Squat Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "hack squat machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Hack-Squat-Calf-Raise.gif"
+  },
+  {
+    "title": "Lever Seated Calf Raise",
+    "description": "Lever Seated Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "seated calf raise machine",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif"
+  },
+  {
+    "title": "Single Leg Calf Raise",
+    "description": "Single Leg Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "bodyweight (or dumbbell optional)",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Single-Leg-Calf-Raises.gif"
+  },
+  {
+    "title": "Hack Machine One-Leg Calf Raise",
+    "description": "Hack Machine One-Leg Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "hack squat machine",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Hack-Machine-One-Leg-Calf-Raise.gif"
+  },
+  {
+    "title": "Donkey Calf Raise",
+    "description": "Donkey Calf Raise exercise targeting neck muscles.",
+    "muscleGroup": "calves",
+    "equipment": "donkey calf raise machine or partner",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Donkey-Calf-Raise.gif"
+  },
+  {
+    "title": "Weighted Lateral Neck Flexion",
+    "description": "Weighted Lateral Neck Flexion exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "weight plate or dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Lying-Weighted-Lateral-Neck-Flexion.gif"
+  },
+  {
+    "title": "Weighted Lying Neck Extension (Neck Harness)",
+    "description": "Weighted Lying Neck Extension (Neck Harness) exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "neck harness",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Weighted-Lying-Neck-Extension.gif"
+  },
+  {
+    "title": "Weighted Lying Neck Flexion (Neck Harness)",
+    "description": "Weighted Lying Neck Flexion (Neck Harness) exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "neck harness",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Weighted-Lying-Neck-Flexion.gif"
+  },
+  {
+    "title": "Neck Rotation Stretch",
+    "description": "Neck Rotation Stretch exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/07/Rotating-Neck-Stretch.gif"
+  },
+  {
+    "title": "Side Neck Stretch",
+    "description": "Side Neck Stretch exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Side-Neck-Stretch.gif"
+  },
+  {
+    "title": "Side Push Neck Stretch",
+    "description": "Side Push Neck Stretch exercise targeting neck muscles.",
+    "muscleGroup": "neck",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Side-Push-Neck-Stretch.gif"
+  },
+  {
+    "title": "Burpee With Push-Up",
+    "description": "Burpee With Push-Up exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/08/Burpee-with-Push-Up.gif"
+  },
+  {
+    "title": "Step Behind Rotational Med Ball Throw",
+    "description": "Step Behind Rotational Med Ball Throw exercise targeting neck muscles.",
+    "muscleGroup": "core",
+    "equipment": "medicine ball",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2024/03/Step-Behind-Rotational-Med-Ball-Throw.gif"
+  },
+  {
+    "title": "Plate Push",
+    "description": "Plate Push exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "weight plate",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/plate-push.gif"
+  },
+  {
+    "title": "Clean and Jerk",
+    "description": "Clean and Jerk exercise targeting neck muscles.",
+    "muscleGroup": "full body",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/06/clean-and-jerk.gif"
+  },
+  {
+    "title": "PVC Hip Hinge",
+    "description": "PVC Hip Hinge exercise targeting neck muscles.",
+    "muscleGroup": "hamstrings",
+    "equipment": "PVC pipe",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Pvc-Hip-Hinge.gif"
+  },
+  {
+    "title": "Dumbbell Good Morning",
+    "description": "Dumbbell Good Morning exercise targeting neck muscles.",
+    "muscleGroup": "hamstrings",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Dumbbell-Good-Morning.gif"
+  },
+  {
+    "title": "Dumbbell Deadlift",
+    "description": "Dumbbell Deadlift exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "dumbbells",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/dumbbell-deadlifts.gif"
+  },
+  {
+    "title": "Dumbbell Sumo Deadlift",
+    "description": "Dumbbell Sumo Deadlift exercise targeting neck muscles.",
+    "muscleGroup": "legs",
+    "equipment": "dumbbells",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/dumbbell-sumo-deadlift.gif"
+  },
+  {
+    "title": "Seated Back Extension",
+    "description": "Seated Back Extension exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "back extension bench or bodyweight",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/seated-back-extension.gif"
+  },
+  {
+    "title": "Barbell Bent Over Row",
+    "description": "Barbell Bent Over Row exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif"
+  },
+  {
+    "title": "Bent Over Dumbbell Row",
+    "description": "Bent Over Dumbbell Row exercise targeting neck muscles.",
+    "muscleGroup": "back",
+    "equipment": "dumbbells",
+    "difficulty": "beginner",
+    "videoUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bent-Over-Dumbbell-Row.gif"
+  }
+]

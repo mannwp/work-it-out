@@ -11,11 +11,18 @@ import * as bcrypt from 'bcrypt';
 import { MailService } from 'src/mail/mail.service';
 import { OtpService } from 'src/otp/otp.service';
 import { EditProfileDto } from './dto/user.dto';
+import { DayOfWeek } from '../common/enums/day-of-week.enum';
+import { UserWorkout } from '../entities/user-workout.entity';
+import { Workout } from '../entities/workout.entity';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(Workout)
+    private workoutRepository: Repository<Workout>,
+    @InjectRepository(UserWorkout)
+    private userWorkoutsRepository: Repository<UserWorkout>,
     private otpService: OtpService,
     private mailService: MailService,
   ) {}
@@ -72,7 +79,9 @@ export class UsersService {
     });
   }
   async findByEmail(email: string) {
-    return this.userRepository.findOne({ where: { email } });
+    return await this.userRepository.findOne({
+      where: { email },
+    });
   }
   async findById(id: string) {
     return this.userRepository.findOne({ where: { id } });
@@ -170,5 +179,55 @@ export class UsersService {
     }
     await this.userRepository.update(id, data);
     return this.userRepository.findOne({ where: { id } });
+  }
+
+  async addWorkoutInPlan(
+    userId: string,
+    workoutId: string,
+    dayOfWeek: DayOfWeek,
+  ) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+    const workout = await this.workoutRepository.findOne({
+      where: { id: workoutId },
+    });
+    if (!workout) {
+      throw new BadRequestException('Workout not found');
+    }
+    const userWorkout = this.userWorkoutsRepository.create({
+      user,
+      workout,
+      dayOfWeek,
+    });
+    return await this.userWorkoutsRepository.save(userWorkout);
+  }
+  async removeWorkoutInPlan(workoutId: string, dayOfWeek: DayOfWeek) {
+    const workout = await this.workoutRepository.findOne({
+      where: { id: workoutId },
+      relations: ['createdBy'],
+    });
+    if (!workout) {
+      throw new BadRequestException(`No workout found with id: ${workoutId}`);
+    }
+    const userWorkout = await this.userWorkoutsRepository.findOne({
+      where: { workout: { id: workout.id }, dayOfWeek: dayOfWeek },
+    });
+    if (!userWorkout) {
+      throw new BadRequestException(`No User workout found for ${dayOfWeek}`);
+    }
+    await this.userWorkoutsRepository.delete(userWorkout.id);
+  }
+  async getWorkoutsInPlan(userId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+    const userWorkout = await this.userWorkoutsRepository.find({
+      where: { user: { id: user.id } },
+      relations: ['workout'],
+    });
+    return userWorkout;
   }
 }

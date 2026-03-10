@@ -6,10 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OtpModule } from 'src/otp/otp.module';
 import { MailModule } from 'src/mail/mail.module';
 import { UserWorkout } from 'src/entities/user-workout.entity';
+import { Workout } from 'src/entities/workout.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, UserWorkout]),
+    TypeOrmModule.forFeature([User, UserWorkout, Workout]),
     OtpModule,
     MailModule,
   ],
