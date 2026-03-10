@@ -34,7 +34,10 @@ export class OtpService {
       expiresAt,
     });
 
-    return otp;
+    return {
+      data: otp,
+      message: 'OTP created successfully',
+    };
   }
 
   async verifyOtp(userId: string, enteredOtp: string) {
@@ -61,6 +64,6 @@ export class OtpService {
     record.used = true;
     await this.otpRepository.save(record);
 
-    return true;
+    return { message: 'OTP verified successfully' };
   }
 }

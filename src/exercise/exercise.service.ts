@@ -21,7 +21,11 @@ export class ExerciseService {
       throw new ForbiddenException('Athlete cant create exercise');
     }
     const exercise = this.exerciseRepository.create(createExerciseDto);
-    return await this.exerciseRepository.save(exercise);
+    const savedExercise = await this.exerciseRepository.save(exercise);
+    return {
+      message: 'Exercise created successfully',
+      data: savedExercise,
+    };
   }
 
   async findAll(
@@ -56,10 +60,14 @@ export class ExerciseService {
         equipment: `%${equipment}%`,
       });
     }
+    query.orderBy('exercise.createdAt', 'DESC');
     query.take(limit).skip((page - 1) * limit);
 
     const [exercise, total] = await query.getManyAndCount();
-    return { exercise, pagination: { page, limit, total } };
+    return {
+      message: 'Exercises fetched successfully',
+      data: { exercise, pagination: { page, limit, total } },
+    };
   }
 
   async findOne(id: string) {
@@ -67,7 +75,10 @@ export class ExerciseService {
     if (!exercise) {
       throw new NotFoundException('Exercise not found');
     }
-    return exercise;
+    return {
+      message: 'Exercise fetched successfully',
+      data: exercise,
+    };
   }
 
   async update(
@@ -85,7 +96,11 @@ export class ExerciseService {
       throw new NotFoundException('Exercise doesnt exists');
     }
     await this.exerciseRepository.update(id, updateExerciseDto);
-    return { ...ex, ...updateExerciseDto };
+    const updatedExercise = await this.exerciseRepository.findOneBy({ id });
+    return {
+      message: 'Exercise updated successfully',
+      data: updatedExercise,
+    };
   }
 
   async remove(userRole: UserRole, id: string) {
@@ -96,6 +111,9 @@ export class ExerciseService {
     if (result.affected === 0) {
       throw new NotFoundException('No exercise found');
     }
-    return 'Exercise deleted successfully';
+    return {
+      message: 'Exercise deleted successfully',
+      data: null,
+    };
   }
 }

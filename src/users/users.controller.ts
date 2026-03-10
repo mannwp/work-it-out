@@ -77,7 +77,7 @@ export class UsersController {
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  @Post('get-workouts')
+  @Get('get-workouts')
   getWorkoutsInPlan(@Request() req: { user: { userId: string } }) {
     return this.usersService.getWorkoutsInPlan(req.user.userId);
   }

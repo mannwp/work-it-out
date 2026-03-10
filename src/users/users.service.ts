@@ -28,7 +28,7 @@ export class UsersService {
   ) {}
 
   private async sendVerificationEmail(user: User) {
-    const otp = await this.otpService.createOtp(user.id);
+    const { data: otp } = await this.otpService.createOtp(user.id);
     const subject = 'Verify Your Email - Workout App';
     const text = `Your verification code is: ${otp}. It expires in 10 minutes.`;
     await this.mailService.sendOtp(user.email, subject, text);
@@ -50,7 +50,9 @@ export class UsersService {
     await this.userRepository.save(user);
     await this.sendVerificationEmail(user);
 
-    return `Verification OTP sent to ${user.email}`;
+    return {
+      message: `Verification OTP sent to ${user.email}`,
+    };
   }
 
   async resendOtp(email: string, password: string) {
@@ -66,7 +68,7 @@ export class UsersService {
     if (!isPasswordCorrect) throw new BadRequestException('Invalid password');
     await this.sendVerificationEmail(user);
 
-    return `Verification OTP sent to ${user.email}`;
+    return { message: `Verification OTP sent to ${user.email}` };
   }
   async verifyOtp(email: string, otp: string) {
     const user = await this.userRepository.findOne({ where: { email } });
@@ -77,6 +79,7 @@ export class UsersService {
     await this.userRepository.update(user.id, {
       isEmailVerified: true,
     });
+    return { message: 'Email verified successfully' };
   }
   async findByEmail(email: string) {
     return await this.userRepository.findOne({
@@ -84,7 +87,25 @@ export class UsersService {
     });
   }
   async findById(id: string) {
-    return this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: [
+        'id',
+        'email',
+        'name',
+        'profilePic',
+        'googleId',
+        'isEmailVerified',
+        'role',
+      ],
+    });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+    return {
+      message: 'User fetched successfully',
+      data: user,
+    };
   }
   async resetPassword(email: string, oldPassword: string, newPassword: string) {
     const user = await this.userRepository.findOne({ where: { email } });
@@ -104,7 +125,7 @@ export class UsersService {
     await this.userRepository.update(user.id, {
       password: hashedNewPassword,
     });
-    return 'Password reset successfully';
+    return { message: 'Password reset successfully' };
   }
 
   async forgotPassword(email: string) {
@@ -112,12 +133,12 @@ export class UsersService {
     if (!user) {
       throw new BadRequestException('User with this email does not exist');
     }
-    const otp = await this.otpService.createOtp(user.id);
+    const { data: otp } = await this.otpService.createOtp(user.id);
     const subject = 'Reset Your Password - Workout App';
     const text = `Your password reset code is: ${otp}. It expires in 10 minutes.`;
     await this.mailService.sendOtp(user.email, subject, text);
 
-    return `Password reset OTP sent to ${user.email}`;
+    return { message: `Password reset OTP sent to ${user.email}` };
   }
 
   async resetPasswordWithOtp(email: string, otp: string, newPassword: string) {
@@ -130,7 +151,7 @@ export class UsersService {
     await this.userRepository.update(user.id, {
       password: hashedNewPassword,
     });
-    return true;
+    return { message: 'Password reset successfully' };
   }
 
   async resendVerificationOtp(user: User) {
@@ -178,7 +199,8 @@ export class UsersService {
       throw new BadRequestException('User not found');
     }
     await this.userRepository.update(id, data);
-    return this.userRepository.findOne({ where: { id } });
+    const updatedUser = await this.userRepository.findOne({ where: { id } });
+    return { data: updatedUser, message: 'Profile updated successfully' };
   }
 
   async addWorkoutInPlan(
@@ -201,7 +223,9 @@ export class UsersService {
       workout,
       dayOfWeek,
     });
-    return await this.userWorkoutsRepository.save(userWorkout);
+    const savedUserWorkout =
+      await this.userWorkoutsRepository.save(userWorkout);
+    return { data: savedUserWorkout, message: 'Workout added to plan' };
   }
   async removeWorkoutInPlan(workoutId: string, dayOfWeek: DayOfWeek) {
     const workout = await this.workoutRepository.findOne({
@@ -218,16 +242,20 @@ export class UsersService {
       throw new BadRequestException(`No User workout found for ${dayOfWeek}`);
     }
     await this.userWorkoutsRepository.delete(userWorkout.id);
+    return { message: 'Workout removed from plan' };
   }
   async getWorkoutsInPlan(userId: string) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
       throw new BadRequestException('User not found');
     }
-    const userWorkout = await this.userWorkoutsRepository.find({
+    const userWorkouts = await this.userWorkoutsRepository.find({
       where: { user: { id: user.id } },
       relations: ['workout'],
     });
-    return userWorkout;
+    return {
+      data: userWorkouts,
+      message: 'Workouts in plan fetched successfully',
+    };
   }
 }

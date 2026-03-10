@@ -9,9 +9,10 @@ export const exerciseSeeder = async (dataSource: DataSource) => {
     const duplicate = await repo.findOne({ where: { title: exercise.title } });
     if (duplicate) {
       await repo.update(duplicate.id, exercise);
+    } else {
+      const entity = repo.create(exercise);
+      await repo.save(entity);
     }
-    const entity = repo.create(exercise);
-    await repo.save(entity);
   }
 
   console.log('Exercises seeded');

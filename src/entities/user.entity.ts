@@ -53,6 +53,9 @@ export class User {
   @OneToMany(() => Workout, (workout) => workout.createdBy)
   workouts: Workout[];
 
+  // @OneToMany(() => WorkoutLog, (workout) => workout.user)
+  // workoutLogs: WorkoutLog[];
+
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 

@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { OtpModule } from './otp/otp.module';
 import { MailModule } from './mail/mail.module';
+import { WorkoutLogsModule } from './workout-logs/workout-logs.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MailModule } from './mail/mail.module';
     WorkoutModule,
     OtpModule,
     MailModule,
+    WorkoutLogsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

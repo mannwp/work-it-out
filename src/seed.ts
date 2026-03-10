@@ -26,4 +26,9 @@ async function runSeed() {
   console.log('✅ Seeding finished');
 }
 
-runSeed();
+runSeed()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error('❌ Seeding failed:', error);
+    process.exit(1);
+  });

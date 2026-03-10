@@ -59,7 +59,7 @@ export class WorkoutService {
       await queryRunner.manager.save(workoutExercises);
 
       await queryRunner.commitTransaction();
-      return savedWorkout;
+      return { data: savedWorkout, message: 'Workout created successfully' };
     } catch (err) {
       await queryRunner.rollbackTransaction();
       throw err;
@@ -69,7 +69,8 @@ export class WorkoutService {
   }
 
   async findAll() {
-    return await this.workoutRepository.find();
+    const workouts = await this.workoutRepository.find();
+    return { data: workouts, message: 'Workouts fetched successfully' };
   }
 
   async findOne(id: string) {
@@ -91,15 +92,18 @@ export class WorkoutService {
     });
 
     return {
-      id: workout.id,
-      title: workout.title,
-      description: workout.description,
-      isOfficial: workout.isOfficial,
-      createdByUser:
-        workout.createdBy?.name || workout.createdBy?.email || 'Unknown',
-      createdByProfile: workout.createdBy?.profilePic ?? null,
-      createdById: workout.createdById,
-      exercises: exercises,
+      data: {
+        id: workout.id,
+        title: workout.title,
+        description: workout.description,
+        isOfficial: workout.isOfficial,
+        createdByUser:
+          workout.createdBy?.name || workout.createdBy?.email || 'Unknown',
+        createdByProfile: workout.createdBy?.profilePic ?? null,
+        createdById: workout.createdById,
+        exercises: exercises,
+      },
+      message: 'Workout details fetched successfully',
     };
   }
 
@@ -172,6 +176,6 @@ export class WorkoutService {
       throw new ForbiddenException(`Workout can only be deleted by creator`);
     }
     await this.workoutRepository.softDelete(workout.id);
-    return 'Workout deleted successfully';
+    return { message: 'Workout deleted successfully' };
   }
 }

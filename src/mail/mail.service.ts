@@ -24,5 +24,6 @@ export class MailService {
       subject: subject,
       text: text,
     });
+    return { message: 'Email sent successfully' };
   }
 }

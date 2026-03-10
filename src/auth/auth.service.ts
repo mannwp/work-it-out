@@ -27,7 +27,6 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException();
     }
-    console.log(user);
 
     if (!user.password) {
       throw new BadRequestException(
@@ -46,7 +45,10 @@ export class AuthService {
     }
     const payload = { sub: user.id, role: user.role };
     return {
-      token: this.jwtService.sign(payload),
+      data: {
+        token: this.jwtService.sign(payload),
+      },
+      message: 'Login successful',
     };
   }
 
@@ -64,7 +66,10 @@ export class AuthService {
     }
     const payload = { sub: user.id, role: user.role };
     return {
-      token: this.jwtService.sign(payload),
+      data: {
+        token: this.jwtService.sign(payload),
+      },
+      message: 'Google login successful',
     };
   }
 }
