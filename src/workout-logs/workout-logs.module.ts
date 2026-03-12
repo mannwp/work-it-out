@@ -7,10 +7,18 @@ import { Workout } from 'src/entities/workout.entity';
 import { WorkoutLog } from 'src/entities/workout-log.entity';
 import { ExerciseLog } from 'src/entities/exercise-log.entity';
 import { SetLog } from 'src/entities/set-log.entity';
+import { Exercise } from 'src/entities/exercise.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, Workout, WorkoutLog, ExerciseLog, SetLog]),
+    TypeOrmModule.forFeature([
+      User,
+      Workout,
+      WorkoutLog,
+      Exercise,
+      ExerciseLog,
+      SetLog,
+    ]),
   ],
   controllers: [WorkoutLogsController],
   providers: [WorkoutLogsService],

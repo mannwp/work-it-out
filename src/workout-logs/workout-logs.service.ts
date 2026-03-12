@@ -11,6 +11,7 @@ import { Workout } from 'src/entities/workout.entity';
 import { WorkoutLog } from 'src/entities/workout-log.entity';
 import { ExerciseLog } from 'src/entities/exercise-log.entity';
 import { SetLog } from 'src/entities/set-log.entity';
+import { Exercise } from 'src/entities/exercise.entity';
 
 @Injectable()
 export class WorkoutLogsService {
@@ -21,6 +22,8 @@ export class WorkoutLogsService {
     private workoutRepository: Repository<Workout>,
     @InjectRepository(WorkoutLog)
     private workoutLogRepository: Repository<WorkoutLog>,
+    @InjectRepository(Exercise)
+    private exerciseRepository: Repository<Exercise>,
     @InjectRepository(ExerciseLog)
     private exerciseLogRepository: Repository<ExerciseLog>,
     @InjectRepository(SetLog)
@@ -270,5 +273,42 @@ export class WorkoutLogsService {
     return {
       message: 'Set deleted successfully',
     };
+  }
+  async getStreak(userId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException(`User not found`);
+    }
+    const userWorkout = await this.workoutLogRepository.find({
+      where: { user: { id: userId } },
+    });
+    const workoutDates: { date: string; completed: boolean }[] = [];
+    for (const workout of userWorkout) {
+      workoutDates.push({ date: workout.date, completed: true });
+    }
+    return workoutDates;
+  }
+  async getRecords(userId: string, exerciseId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException(`User not found`);
+    }
+    const exercise = await this.exerciseRepository.findOne({
+      where: { id: exerciseId },
+    });
+    if (!exercise) {
+      throw new NotFoundException(`Exercise not found`);
+    }
+    const records = await this.setLogRepository.find({
+      where: { exerciseLog: { exercise: { id: exerciseId } } },
+      relations: ['exerciseLog', 'exerciseLog.workoutLog'],
+    });
+    const result = records.map((r) => ({
+      date: r.exerciseLog.workoutLog.date,
+      weight: r.weight,
+      reps: r.reps,
+      estimated1rm: r.weight ? Math.floor(r.weight * (1 + r.reps / 30)) : 0,
+    }));
+    return result;
   }
 }

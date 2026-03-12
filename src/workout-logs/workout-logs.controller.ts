@@ -46,13 +46,29 @@ export class WorkoutLogsController {
     return this.workoutLogsService.findAll(req.user.sub, query.workoutId);
   }
 
+  @Get('streak')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  getStreakLog(@Request() req: { user: JwtPayload }) {
+    console.log(req.user);
+
+    return this.workoutLogsService.getStreak(req.user.sub);
+  }
   @Get(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   findOne(@Request() req: { user: JwtPayload }, @Param('id') id: string) {
     return this.workoutLogsService.findOne(id, req.user.sub);
   }
-
+  @Get(':id/exercise/records')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  getExerciseRecords(
+    @Request() req: { user: JwtPayload },
+    @Param('id') id: string,
+  ) {
+    return this.workoutLogsService.getRecords(req.user.sub, id);
+  }
   @Post(':id/exercise')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
