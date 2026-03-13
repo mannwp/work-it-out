@@ -53,3 +53,8 @@ export class UpdateWorkoutLogDto {
   @IsDateString()
   date: string;
 }
+export class StreakDto {
+  @ApiProperty({ example: '2023-10-27T10:00:00Z' })
+  @IsDateString()
+  date: string;
+}

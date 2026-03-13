@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { UserWorkout } from './user-workout.entity';
 import { Workout } from './workout.entity';
+import { FavoriteExercise } from './favorite-exercise.entity';
 export enum UserRole {
   ADMIN = 'admin',
   ATHLETE = 'athlete',
@@ -53,8 +54,8 @@ export class User {
   @OneToMany(() => Workout, (workout) => workout.createdBy)
   workouts: Workout[];
 
-  // @OneToMany(() => WorkoutLog, (workout) => workout.user)
-  // workoutLogs: WorkoutLog[];
+  @OneToMany(() => FavoriteExercise, (fav) => fav.user)
+  favoriteExercises: FavoriteExercise[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;

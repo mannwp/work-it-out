@@ -49,10 +49,13 @@ export class WorkoutLogsController {
   @Get('streak')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  getStreakLog(@Request() req: { user: JwtPayload }) {
-    console.log(req.user);
+  getStreakLog(
+    @Request() req: { user: JwtPayload },
+    @Query('date') date: string,
+  ) {
+    console.log(date);
 
-    return this.workoutLogsService.getStreak(req.user.sub);
+    return this.workoutLogsService.getStreak(req.user.sub, date);
   }
   @Get(':id')
   @ApiBearerAuth()

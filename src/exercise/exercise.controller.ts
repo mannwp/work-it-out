@@ -15,6 +15,7 @@ import { CreateExerciseDto, UpdateExerciseDto } from './dto/exercise.dto';
 import { UserRole } from 'src/entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { JwtPayload } from 'src/auth/jwt.strategy';
 
 @Controller('exercise')
 export class ExerciseController {
@@ -30,8 +31,8 @@ export class ExerciseController {
   }
 
   @Get()
-  // @UseGuards(JwtAuthGuard)
-  // @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiQuery({ name: 'page', required: false })
   @ApiQuery({ name: 'limit', required: false })
   @ApiQuery({ name: 'q', required: false })
@@ -39,6 +40,7 @@ export class ExerciseController {
   @ApiQuery({ name: 'difficulty', required: false })
   @ApiQuery({ name: 'equipment', required: false })
   findAll(
+    @Request() req: { user: JwtPayload },
     @Query('page')
     page = 1,
     @Query('limit') limit = 10,
@@ -48,6 +50,7 @@ export class ExerciseController {
     @Query('equipment') equipment = '',
   ) {
     return this.exerciseService.findAll(
+      req.user.sub,
       page,
       limit,
       q,
@@ -56,12 +59,16 @@ export class ExerciseController {
       equipment,
     );
   }
+  @Get('popular')
+  getPopular() {
+    return this.exerciseService.getPopularExercise();
+  }
 
   @Get(':id')
-  // @UseGuards(JwtAuthGuard)
-  // @ApiBearerAuth()
-  findOne(@Param('id') id: string) {
-    return this.exerciseService.findOne(id);
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  findOne(@Request() req: { user: JwtPayload }, @Param('id') id: string) {
+    return this.exerciseService.findOne(req.user.sub, id);
   }
 
   @Patch(':id')
@@ -87,5 +94,21 @@ export class ExerciseController {
     @Param('id') id: string,
   ) {
     return this.exerciseService.remove(req.user.userRole, id);
+  }
+
+  @Post(':id/favorite')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  addfavorite(@Request() req: { user: JwtPayload }, @Param('id') id: string) {
+    return this.exerciseService.addFavorite(req.user.sub, id);
+  }
+  @Delete(':id/favorite')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  removefavorite(
+    @Request() req: { user: JwtPayload },
+    @Param('id') id: string,
+  ) {
+    return this.exerciseService.removeFavorite(req.user.sub, id);
   }
 }

@@ -12,6 +12,7 @@ import { WorkoutLog } from 'src/entities/workout-log.entity';
 import { ExerciseLog } from 'src/entities/exercise-log.entity';
 import { SetLog } from 'src/entities/set-log.entity';
 import { Exercise } from 'src/entities/exercise.entity';
+import { differenceInCalendarDays } from 'date-fns';
 
 @Injectable()
 export class WorkoutLogsService {
@@ -274,7 +275,7 @@ export class WorkoutLogsService {
       message: 'Set deleted successfully',
     };
   }
-  async getStreak(userId: string) {
+  async getStreak(userId: string, userCurrentDate: string) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
       throw new NotFoundException(`User not found`);
@@ -283,10 +284,44 @@ export class WorkoutLogsService {
       where: { user: { id: userId } },
     });
     const workoutDates: { date: string; completed: boolean }[] = [];
+
     for (const workout of userWorkout) {
       workoutDates.push({ date: workout.date, completed: true });
     }
-    return workoutDates;
+    let longestStreak = 0;
+    let currentStreak = 1;
+    const unique = Array.from(
+      new Map(
+        workoutDates.map((w) => [
+          new Date(w.date).toISOString().split('T')[0], // key = YYYY-MM-DD
+          w,
+        ]),
+      ).values(),
+    );
+    unique.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
+    for (let i = 1; i < unique.length; i++) {
+      const date = new Date(unique[i].date);
+      const prevDate = new Date(unique[i - 1].date);
+      const diff = differenceInCalendarDays(date, prevDate);
+
+      if (diff === 1) {
+        currentStreak++;
+      } else {
+        currentStreak = 1;
+      }
+      longestStreak = Math.max(longestStreak, currentStreak);
+    }
+    const userDate = new Date(userCurrentDate).getTime();
+    const lastUniqueDate = new Date(unique[unique.length - 1].date).getTime();
+    const diff = differenceInCalendarDays(userDate, lastUniqueDate);
+    console.log(userCurrentDate, userDate, lastUniqueDate, diff);
+
+    if (diff > 1) {
+      currentStreak = 0;
+    }
+    return { longestStreak, currentStreak, unique };
   }
   async getRecords(userId: string, exerciseId: string) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
@@ -300,7 +335,12 @@ export class WorkoutLogsService {
       throw new NotFoundException(`Exercise not found`);
     }
     const records = await this.setLogRepository.find({
-      where: { exerciseLog: { exercise: { id: exerciseId } } },
+      where: {
+        exerciseLog: {
+          exercise: { id: exerciseId },
+          workoutLog: { user: { id: userId } },
+        },
+      },
       relations: ['exerciseLog', 'exerciseLog.workoutLog'],
     });
     const result = records.map((r) => ({

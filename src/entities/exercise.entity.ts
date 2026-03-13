@@ -8,6 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { WorkoutExercise } from './workout-exercise.entity';
+import { FavoriteExercise } from './favorite-exercise.entity';
 
 @Entity()
 export class Exercise {
@@ -37,6 +38,9 @@ export class Exercise {
     (workoutExercise) => workoutExercise.exercise,
   )
   workoutExercise: WorkoutExercise[];
+
+  @OneToMany(() => FavoriteExercise, (fav) => fav.exercise)
+  favoriteExercise: FavoriteExercise[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
