@@ -18,8 +18,8 @@ export class WorkoutLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  date: string;
+  @Column({ type: 'timestamptz' })
+  date: Date;
 
   @ManyToOne(() => User)
   @Index()

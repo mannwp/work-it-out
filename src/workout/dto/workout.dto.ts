@@ -1,12 +1,4 @@
-import {
-  IsString,
-  IsArray,
-  ValidateNested,
-  IsUUID,
-  IsInt,
-  Min,
-} from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsString, IsUUID, IsInt, Min } from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 export class WorkoutExerciseDto {
   @ApiProperty({
@@ -67,11 +59,26 @@ export class CreateWorkoutDto {
   description: string;
 
   @ApiProperty({
-    type: [WorkoutExerciseDto],
+    type: 'string',
+    format: 'binary',
+    required: false,
   })
-  @Type(() => WorkoutExerciseDto)
-  @IsArray()
-  @ValidateNested({ each: true })
-  exercises: WorkoutExerciseDto[];
+  coverImage?: Express.Multer.File;
+
+  @ApiProperty({
+    example: JSON.stringify([
+      {
+        exerciseId: 'uuid',
+        suggestedSetsMin: 3,
+        suggestedSetsMax: 4,
+        suggestedRepsMin: 8,
+        suggestedRepsMax: 12,
+        restTime: 60,
+        order: 1,
+      },
+    ]),
+  })
+  exercises: string;
 }
+
 export class UpdateWorkoutDto extends PartialType(CreateWorkoutDto) {}

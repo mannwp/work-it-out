@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,6 +15,7 @@ import { EditProfileDto } from './dto/user.dto';
 import { DayOfWeek } from '../common/enums/day-of-week.enum';
 import { UserWorkout } from '../entities/user-workout.entity';
 import { Workout } from '../entities/workout.entity';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 @Injectable()
 export class UsersService {
   constructor(
@@ -25,6 +27,7 @@ export class UsersService {
     private userWorkoutsRepository: Repository<UserWorkout>,
     private otpService: OtpService,
     private mailService: MailService,
+    private cloudinaryService: CloudinaryService,
   ) {}
 
   private async sendVerificationEmail(user: User) {
@@ -201,6 +204,38 @@ export class UsersService {
     await this.userRepository.update(id, data);
     const updatedUser = await this.userRepository.findOne({ where: { id } });
     return { data: updatedUser, message: 'Profile updated successfully' };
+  }
+
+  async uploadProfile(userId: string, file: Express.Multer.File) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    if (file.size > 2000000) {
+      throw new BadRequestException('File limit 2MB only');
+    }
+    if (!file.mimetype.includes('image')) {
+      throw new BadRequestException('Only images supported');
+    }
+    const upload = await this.cloudinaryService.upload(file).catch(() => {
+      throw new BadRequestException('Failed to upload');
+    });
+    const url = upload?.data?.url as string;
+    const publicId = upload?.data?.public_id as string;
+    const blurHash = upload.blurhash;
+    await this.userRepository.save({
+      ...user,
+      profilePic: url,
+      profilePicBlurHash: blurHash,
+      profilePicPublicId: publicId,
+    });
+    if (user.profilePicPublicId) {
+      await this.cloudinaryService.delete(user.profilePicPublicId);
+    }
+
+    return {
+      message: 'Profile photo uploaded successfully',
+    };
   }
 
   async addWorkoutInPlan(

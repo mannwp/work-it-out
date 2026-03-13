@@ -35,6 +35,15 @@ export class Workout {
   @Column()
   isOfficial: boolean;
 
+  @Column({ nullable: true })
+  coverImage?: string;
+
+  @Column({ nullable: true })
+  coverImagePublicId?: string;
+
+  @Column({ nullable: true })
+  coverImageHash?: string;
+
   @OneToMany(
     () => WorkoutExercise,
     (workoutExercise) => workoutExercise.workout,

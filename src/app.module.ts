@@ -11,6 +11,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { OtpModule } from './otp/otp.module';
 import { MailModule } from './mail/mail.module';
 import { WorkoutLogsModule } from './workout-logs/workout-logs.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { WorkoutLogsModule } from './workout-logs/workout-logs.module';
     OtpModule,
     MailModule,
     WorkoutLogsModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

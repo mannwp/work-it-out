@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import {
   CreateWorkoutLogDto,
   ExerciseLogDto,
@@ -55,6 +59,14 @@ export class WorkoutLogsService {
       });
       await queryRunner.manager.save(workoutLog);
       for (const exercise of data.exercises) {
+        const exerciseExists = await this.exerciseRepository.findOne({
+          where: { id: exercise.exerciseId },
+        });
+        if (!exerciseExists) {
+          throw new BadRequestException(
+            `Exericse with id ${exercise.exerciseId} not found`,
+          );
+        }
         const exerciseLog = queryRunner.manager.create(ExerciseLog, {
           exercise: { id: exercise.exerciseId },
           workoutLog,
@@ -283,7 +295,13 @@ export class WorkoutLogsService {
     const userWorkout = await this.workoutLogRepository.find({
       where: { user: { id: userId } },
     });
-    const workoutDates: { date: string; completed: boolean }[] = [];
+    if (!userWorkout.length) {
+      return {
+        message: 'No workouts found',
+      };
+    }
+
+    const workoutDates: { date: Date; completed: boolean }[] = [];
 
     for (const workout of userWorkout) {
       workoutDates.push({ date: workout.date, completed: true });

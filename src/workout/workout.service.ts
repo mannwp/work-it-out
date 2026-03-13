@@ -3,23 +3,31 @@ import {
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
-import { CreateWorkoutDto, UpdateWorkoutDto } from './dto/workout.dto';
+import {
+  CreateWorkoutDto,
+  UpdateWorkoutDto,
+  WorkoutExerciseDto,
+} from './dto/workout.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Workout } from 'src/entities/workout.entity';
 import { DataSource, Repository } from 'typeorm';
 import { WorkoutExercise } from 'src/entities/workout-exercise.entity';
-import { UserRole } from 'src/entities/user.entity';
+import { User, UserRole } from 'src/entities/user.entity';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class WorkoutService {
   constructor(
     @InjectRepository(Workout)
     private workoutRepository: Repository<Workout>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
 
     @InjectRepository(WorkoutExercise)
     private workoutExerciseRepository: Repository<WorkoutExercise>,
 
     private dataSource: DataSource,
+    private cloudinaryService: CloudinaryService,
   ) {}
   async create(
     userId: string,
@@ -35,15 +43,25 @@ export class WorkoutService {
       if (userRole === UserRole.ADMIN) {
         isAdmin = true;
       }
+
+      const media =
+        createWorkoutDto?.coverImage &&
+        (await this.cloudinaryService.upload(createWorkoutDto?.coverImage));
+
       const workout = queryRunner.manager.create(Workout, {
         title: createWorkoutDto.title,
         description: createWorkoutDto.description,
         createdById: userId,
         isOfficial: isAdmin,
+        coverImage: media?.data?.url as string,
+        coverImagePublicId: media?.data?.public_id as string,
+        coverImageHash: media?.blurhash,
       });
       const savedWorkout = await queryRunner.manager.save(workout);
 
-      const exercises = createWorkoutDto.exercises ?? [];
+      const exercises = JSON.parse(
+        createWorkoutDto.exercises,
+      ) as WorkoutExerciseDto[];
       const workoutExercises = exercises.map((ex) =>
         queryRunner.manager.create(WorkoutExercise, {
           workout: { id: savedWorkout.id },
@@ -118,7 +136,9 @@ export class WorkoutService {
     if (!workout) {
       throw new BadRequestException('Workout not found');
     }
-    if (workout.createdById !== userId) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+
+    if (user?.role !== UserRole.ADMIN && workout.createdById !== userId) {
       throw new ForbiddenException('Workout can only be updated by creator');
     }
 
@@ -127,10 +147,30 @@ export class WorkoutService {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.manager.update(Workout, workoutId, {
-        title: updateWorkoutDto.title,
-        description: updateWorkoutDto.description,
-      });
+      const updateData: Partial<Workout> = {};
+
+      if (updateWorkoutDto.title !== undefined)
+        updateData.title = updateWorkoutDto.title;
+      if (updateWorkoutDto.description !== undefined)
+        updateData.description = updateWorkoutDto.description;
+
+      if (updateWorkoutDto.coverImage) {
+        const media = await this.cloudinaryService.upload(
+          updateWorkoutDto.coverImage,
+        );
+        if (media && media.data && media.data.url) {
+          updateData.coverImage = media.data.url as string;
+          updateData.coverImagePublicId = media.data.public_id as string;
+          updateData.coverImageHash = media.blurhash;
+        }
+      }
+
+      if (Object.keys(updateData).length > 0) {
+        await queryRunner.manager.update(Workout, workoutId, updateData);
+      }
+      if (workout.coverImagePublicId) {
+        await this.cloudinaryService.delete(workout.coverImagePublicId);
+      }
 
       if (updateWorkoutDto.exercises) {
         // remove old exercises
@@ -139,7 +179,13 @@ export class WorkoutService {
         });
 
         // create new exercises
-        const newExercises = updateWorkoutDto.exercises.map((ex) =>
+        const exercisesList = (
+          typeof updateWorkoutDto.exercises === 'string'
+            ? JSON.parse(updateWorkoutDto.exercises)
+            : updateWorkoutDto.exercises
+        ) as WorkoutExerciseDto[];
+
+        const newExercises = exercisesList.map((ex) =>
           queryRunner.manager.create(WorkoutExercise, {
             workout: { id: workoutId },
             exercise: { id: ex.exerciseId },
@@ -172,8 +218,10 @@ export class WorkoutService {
     if (!workout) {
       throw new BadRequestException(`No workout found with id: ${id}`);
     }
-    if (userId !== workout.createdById) {
-      throw new ForbiddenException(`Workout can only be deleted by creator`);
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+
+    if (user?.role !== UserRole.ADMIN && workout.createdById !== userId) {
+      throw new ForbiddenException('Workout can only be deleted by creator');
     }
     await this.workoutRepository.softDelete(workout.id);
     return { message: 'Workout deleted successfully' };

@@ -37,7 +37,8 @@ export class CreateWorkoutLogDto {
 
   @ApiProperty({ example: '2023-10-27T10:00:00Z' })
   @IsDateString()
-  date: string;
+  @Type(() => Date)
+  date: Date;
 
   @ApiProperty({ type: [ExerciseLogDto] })
   @IsArray()

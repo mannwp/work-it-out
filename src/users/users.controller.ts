@@ -5,7 +5,9 @@ import {
   Post,
   Put,
   Request,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -15,7 +17,13 @@ import {
   RemoveWorkoutDto,
   ResetPasswordDto,
 } from './dto/user.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiOperation,
+} from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UsersController {
@@ -45,7 +53,30 @@ export class UsersController {
   ) {
     return this.usersService.edit(req.user.userId, body);
   }
-
+  @Post('upload-profile')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiOperation({ summary: 'Upload a file using Cloudinary' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  async upload(
+    @Request() req: { user: { userId: string } },
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    const result = await this.usersService.uploadProfile(req.user.userId, file);
+    return result;
+  }
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post('add-workout')

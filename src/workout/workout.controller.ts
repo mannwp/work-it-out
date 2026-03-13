@@ -8,12 +8,15 @@ import {
   Delete,
   Request,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { CreateWorkoutDto, UpdateWorkoutDto } from './dto/workout.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
 import { JwtPayload } from 'src/auth/jwt.strategy';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('workout')
 export class WorkoutController {
@@ -21,15 +24,19 @@ export class WorkoutController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('coverImage'))
   create(
     @Request() req: { user: JwtPayload },
-    @Body() createWorkoutDto: CreateWorkoutDto,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: CreateWorkoutDto,
   ) {
-    return this.workoutService.create(
-      req.user.sub,
-      req.user.role,
-      createWorkoutDto,
-    );
+    const dto: CreateWorkoutDto = {
+      ...body,
+      coverImage: file,
+    };
+
+    return this.workoutService.create(req.user.sub, req.user.role, dto);
   }
 
   @Get()
@@ -45,12 +52,19 @@ export class WorkoutController {
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('coverImage'))
   update(
     @Request() req: { user: JwtPayload },
     @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
     @Body() updateWorkoutDto: UpdateWorkoutDto,
   ) {
-    return this.workoutService.update(req.user.sub, id, updateWorkoutDto);
+    const dto: UpdateWorkoutDto = {
+      ...updateWorkoutDto,
+      coverImage: file,
+    };
+    return this.workoutService.update(req.user.sub, id, dto);
   }
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()

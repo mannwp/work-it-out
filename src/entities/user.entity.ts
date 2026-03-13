@@ -37,6 +37,12 @@ export class User {
   profilePic?: string;
 
   @Column({ nullable: true })
+  profilePicPublicId?: string;
+
+  @Column({ nullable: true })
+  profilePicBlurHash?: string;
+
+  @Column({ nullable: true })
   password?: string;
 
   @Column({ default: false })
