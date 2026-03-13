@@ -316,7 +316,6 @@ export class WorkoutLogsService {
     const userDate = new Date(userCurrentDate).getTime();
     const lastUniqueDate = new Date(unique[unique.length - 1].date).getTime();
     const diff = differenceInCalendarDays(userDate, lastUniqueDate);
-    console.log(userCurrentDate, userDate, lastUniqueDate, diff);
 
     if (diff > 1) {
       currentStreak = 0;

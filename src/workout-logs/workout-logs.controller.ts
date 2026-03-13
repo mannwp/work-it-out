@@ -53,8 +53,6 @@ export class WorkoutLogsController {
     @Request() req: { user: JwtPayload },
     @Query('date') date: string,
   ) {
-    console.log(date);
-
     return this.workoutLogsService.getStreak(req.user.sub, date);
   }
   @Get(':id')
